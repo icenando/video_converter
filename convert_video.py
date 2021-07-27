@@ -20,6 +20,14 @@ def check_folder_exists(folders: list) -> None:
     pass
 
 
+def list_videos(input_folder: str) -> list:
+    videos_list = []
+    for f in listdir(input_folder):
+        if path.isfile(path.join(input_folder, f)) and not f.startswith('.'):
+            videos_list.append(f)
+    return videos_list
+
+
 def crop_video(videos: list) -> None:
     #TODO: convert each video to selected resolution.
     # if selected resolution is larger than the 
@@ -32,11 +40,7 @@ def main() -> None:
 
     check_folder_exists([input_folder, output_folder, log_folder])
 
-    videos = [
-        f for f in listdir(input_folder) 
-            if path.isfile(path.join(input_folder, f)) 
-            and not f.startswith('.')
-    ]
+    videos = list_videos(input_folder)
 
     if videos:
         logger.debug('List of videos acquired: ' + pformat(videos))

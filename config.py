@@ -2,10 +2,12 @@
 
 # config.py - configuration variables for 'convert_video.py'
 
+from os import path
 
 import logging
-from os import path
 from logging.handlers import RotatingFileHandler
+
+
 logging.basicConfig(
     level=logging.DEBUG,
     format='%(asctime)s - %(levelname)s - %(message)s',
@@ -17,7 +19,6 @@ logging.basicConfig(
         )
     ]
 )
-
 logger = logging.getLogger('main')
 
 
