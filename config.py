@@ -26,11 +26,11 @@ input_folder = "input_videos"
 output_folder = "output_videos"
 log_folder = "logs"
 
-resolutions = [
-    "1920x1080",
-    "1080x1920",
-    "1080x1080",
-    "1350x1080"
+resolutions = [  # (width, height)
+    (1920, 1080),
+    (1080, 1920),
+    (1080, 1080),
+    (1350, 1080)
 ]
 
 codecs = [
@@ -38,5 +38,5 @@ codecs = [
 ]
 
 formats = [
-    "mp4"
+    ".mp4"
 ]
