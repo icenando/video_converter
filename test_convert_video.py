@@ -23,8 +23,7 @@ def test_videos_listed():
     test_video = ['test_video', 'test_video.mov']
     check_folder_exists([test_video[0]])  # Creates "test_video" folder
     test_video_path = path.join(test_video[0], test_video[1])
-    test_file = open(test_video_path, 'w')  # Creates "test_video/test_video.mov" file
-    test_file.close()
+    open(test_video_path, 'w').close()  # Creates "test_video/test_video.mov" file
     videos = list_videos(test_video[0])
     assert test_video[1] in videos
     remove(test_video_path)
