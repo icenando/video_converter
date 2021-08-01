@@ -1,0 +1,65 @@
+2021-07-26 22:57:10,627 - DEBUG - Starting main()
+2021-07-26 22:57:10,628 - DEBUG - List of videos acquired: ['v007c_engag_3840x2160_24fps_graded_v03.mov']
+2021-07-26 22:58:04,876 - DEBUG - Starting main()
+2021-07-26 22:58:04,876 - DEBUG - List of videos acquired: ['v007c_engag_3840x2160_24fps_graded_v03.mov']
+2021-07-26 22:58:04,876 - DEBUG - Finished runnning main(). Exiting programme
+2021-07-26 23:00:38,826 - DEBUG - Starting main()
+2021-07-26 23:00:38,826 - DEBUG - List of videos acquired: ['v007c_engag_3840x2160_24fps_graded_v03.mov']
+2021-07-26 23:00:38,826 - DEBUG - Finished runnning main(). Exiting programme
+2021-07-26 23:09:58,998 - DEBUG - Starting main()
+2021-07-26 23:09:58,999 - DEBUG - List of videos acquired: ['v007c_engag_3840x2160_24fps_graded_v03.mov']
+2021-07-26 23:09:58,999 - DEBUG - Finished runnning main(). Exiting programme
+2021-07-26 23:10:20,400 - DEBUG - Starting main()
+2021-07-26 23:10:20,401 - DEBUG - List of videos acquired: ['v007c_engag_3840x2160_24fps_graded_v03.mov']
+2021-07-26 23:10:20,401 - DEBUG - Finished runnning main(). Exiting programme
+2021-07-26 23:14:07,713 - DEBUG - Starting main()
+2021-07-26 23:14:07,714 - DEBUG - List of videos acquired: ['v007c_engag_3840x2160_24fps_graded_v03.mov']
+2021-07-26 23:14:07,714 - DEBUG - Finished runnning main(). Exiting programme
+2021-07-26 23:15:10,576 - DEBUG - Starting main()
+2021-07-26 23:15:10,576 - DEBUG - List of videos acquired: ['v007c_engag_3840x2160_24fps_graded_v03.mov']
+2021-07-26 23:15:10,576 - DEBUG - Finished runnning main(). Exiting programme
+2021-07-26 23:15:11,514 - DEBUG - Starting main()
+2021-07-26 23:15:11,515 - DEBUG - List of videos acquired: ['v007c_engag_3840x2160_24fps_graded_v03.mov']
+2021-07-26 23:15:11,515 - DEBUG - Finished runnning main(). Exiting programme
+2021-07-26 23:17:47,050 - DEBUG - Starting main()
+2021-07-26 23:17:47,053 - DEBUG - Finished runnning main(). Exiting programme
+2021-07-26 23:18:35,336 - DEBUG - Starting main()
+2021-07-26 23:18:35,337 - DEBUG - List of videos acquired: 
+2021-07-26 23:18:35,337 - DEBUG - ['v007c_engag_3840x2160_24fps_graded_v03.mov']
+2021-07-26 23:18:35,337 - DEBUG - Finished runnning main(). Exiting programme
+2021-07-26 23:18:58,610 - DEBUG - Starting main()
+2021-07-26 23:18:58,611 - DEBUG - List of videos acquired: 
+2021-07-26 23:18:58,611 - DEBUG - ['v007c_engag_3840x2160_24fps_graded_v03 copy.mov',
+ 'v007c_engag_3840x2160_24fps_graded_v03.mov']
+2021-07-26 23:18:58,611 - DEBUG - Finished runnning main(). Exiting programme
+2021-07-26 23:20:43,126 - DEBUG - Starting main()
+2021-07-26 23:20:43,127 - DEBUG - List of videos acquired: ['v007c_engag_3840x2160_24fps_graded_v03 copy.mov',
+ 'v007c_engag_3840x2160_24fps_graded_v03.mov']
+2021-07-26 23:20:43,127 - DEBUG - Finished runnning main(). Exiting programme
+2021-07-26 23:25:45,359 - DEBUG - Starting main()
+2021-07-26 23:25:45,359 - DEBUG - List of videos acquired: ['v007c_engag_3840x2160_24fps_graded_v03 copy.mov',
+ 'v007c_engag_3840x2160_24fps_graded_v03.mov']
+2021-07-26 23:25:45,360 - DEBUG - Finished runnning main(). Exiting programme
+2021-07-26 23:27:11,120 - DEBUG - Starting main()
+2021-07-26 23:27:11,121 - DEBUG - List of videos acquired: ['v007c_engag_3840x2160_24fps_graded_v03 copy.mov',
+ 'v007c_engag_3840x2160_24fps_graded_v03.mov']
+2021-07-26 23:27:11,121 - DEBUG - Finished runnning main(). Exiting programme
+2021-07-27 12:55:14,801 - DEBUG - Starting main()
+2021-07-27 12:55:29,495 - DEBUG - List of videos acquired: ['v007c_engag_3840x2160_24fps_graded_v03.mov']
+2021-07-27 12:55:35,009 - DEBUG - Finished runnning main(). Exiting programme
+2021-07-27 13:03:46,844 - DEBUG - Starting main()
+2021-07-27 13:03:46,844 - DEBUG - List of videos acquired: ['v007c_engag_3840x2160_24fps_graded_v03.mov']
+2021-07-27 13:03:46,844 - DEBUG - Finished runnning main(). Exiting programme
+2021-07-27 13:04:02,273 - DEBUG - Starting main()
+2021-07-27 13:04:02,274 - DEBUG - List of videos acquired: ['v007c_engag_3840x2160_24fps_graded_v03.mov']
+2021-07-27 13:04:02,274 - DEBUG - Finished runnning main(). Exiting programme
+2021-07-27 13:07:49,312 - DEBUG - Starting main()
+2021-07-27 13:07:49,313 - DEBUG - List of videos acquired: ['v007c_engag_3840x2160_24fps_graded_v03.mov']
+2021-07-27 13:07:49,313 - DEBUG - Finished runnning main(). Exiting programme
+2021-07-27 18:29:11,255 - DEBUG - Using selector: KqueueSelector
+2021-07-27 18:29:11,255 - DEBUG - Starting main()
+2021-07-27 18:29:11,256 - DEBUG - List of videos acquired: ['v007c_engag_3840x2160_24fps_graded_v03.mov']
+2021-07-27 18:29:25,112 - DEBUG - Using selector: KqueueSelector
+2021-07-27 18:29:25,112 - DEBUG - Starting main()
+2021-07-27 18:29:25,113 - DEBUG - List of videos acquired: ['v007c_engag_3840x2160_24fps_graded_v03.mov']
+2021-07-27 18:29:25,113 - DEBUG - Finished runnning main(). Exiting programme
