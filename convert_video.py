@@ -5,19 +5,10 @@
 
 from moviepy.video.io.VideoFileClip import VideoFileClip
 import moviepy.video.fx.all as vfx
-from os import makedirs, path, listdir
+from os import path, listdir
 from pprint import pformat
 from config import *
 import asyncio
-
-
-def check_folder_exists(folders: list) -> None:
-    for folder in folders:
-        if path.exists(folder):
-            pass
-        else:
-            makedirs(folder)
-    pass
 
 
 def list_videos(selected_folder: str) -> list:
@@ -75,7 +66,7 @@ async def crop_video(
 
 
 async def main() -> None:
-    check_folder_exists([input_folder, output_folder, log_folder])
+    check_folder_exists([input_folder, output_folder])
 
     logger.debug('Starting main()')
 

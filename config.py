@@ -2,10 +2,22 @@
 
 # config.py - configuration variables for 'convert_video.py'
 
-from os import path
+from os import path, makedirs
 
 import logging
 from logging.handlers import RotatingFileHandler
+
+
+def check_folder_exists(folders: list) -> None:
+    for folder in folders:
+        if path.exists(folder):
+            pass
+        else:
+            makedirs(folder)
+    pass
+
+
+check_folder_exists(['logs'])
 
 
 logging.basicConfig(
@@ -24,7 +36,7 @@ logger = logging.getLogger('main')
 
 input_folder = "input_videos"
 output_folder = "output_videos"
-log_folder = "logs"
+
 
 resolutions = [  # (width, height)
     (1920, 1080),
