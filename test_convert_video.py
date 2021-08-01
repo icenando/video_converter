@@ -20,10 +20,17 @@ def test_folder_created():
         removedirs(test_folder)        
 
 def test_videos_listed():
-    test_video = 'test_video.mov'
-    test_video_path = path.join(input_folder, test_video)
-    open(test_video_path, 'x').close()
-    videos = list_videos(input_folder)
-    assert test_video in videos
+    test_video = ['test_video', 'test_video.mov']
+    check_folder_exists([test_video[0]])  # Creates "test_video" folder
+    test_video_path = path.join(test_video[0], test_video[1])
+    test_file = open(test_video_path, 'w')  # Creates "test_video/test_video.mov" file
+    test_file.close()
+    videos = list_videos(test_video[0])
+    assert test_video[1] in videos
     remove(test_video_path)
+    removedirs(test_video[0])
 
+
+if __name__ == '__main__':
+    test_folder_created()
+    test_videos_listed()
