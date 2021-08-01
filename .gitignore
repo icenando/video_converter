@@ -3,3 +3,4 @@ input_videos
 output_videos
 logs
 __pycache__/config.cpython-39.pyc
+.coverage
