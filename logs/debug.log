@@ -63,3 +63,10 @@
 2021-07-27 18:29:25,112 - DEBUG - Starting main()
 2021-07-27 18:29:25,113 - DEBUG - List of videos acquired: ['v007c_engag_3840x2160_24fps_graded_v03.mov']
 2021-07-27 18:29:25,113 - DEBUG - Finished runnning main(). Exiting programme
+2021-08-01 12:45:35,594 - DEBUG - Using selector: KqueueSelector
+2021-08-01 12:45:35,595 - DEBUG - Starting main()
+2021-08-01 12:45:35,595 - DEBUG - List of videos acquired: ['v007c_engag_3840x2160_24fps_graded_v03.mov']
+2021-08-01 12:45:35,595 - DEBUG - Finished runnning main(). Exiting programme
+2021-08-01 12:47:13,356 - DEBUG - Using selector: KqueueSelector
+2021-08-01 12:47:13,358 - DEBUG - Starting main()
+2021-08-01 12:47:13,358 - DEBUG - List of videos acquired: ['v007c_engag_3840x2160_24fps_graded_v03.mov']

@@ -20,10 +20,10 @@ def check_folder_exists(folders: list) -> None:
     pass
 
 
-def list_videos(input_folder: str) -> list:
+def list_videos(selected_folder: str) -> list:
     videos_list = []
-    for f in listdir(input_folder):
-        if path.isfile(path.join(input_folder, f)) and not f.startswith('.'):
+    for f in listdir(selected_folder):
+        if path.isfile(path.join(selected_folder, f)) and not f.startswith('.'):
             videos_list.append(f)
     return videos_list
 
