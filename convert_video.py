@@ -8,7 +8,7 @@
 from os import makedirs, path, listdir
 from pprint import pformat
 from config import *
-
+import asyncio
 
 
 def check_folder_exists(folders: list) -> None:
@@ -28,14 +28,14 @@ def list_videos(input_folder: str) -> list:
     return videos_list
 
 
-def crop_video(videos: list) -> None:
-    #TODO: convert each video to selected resolution.
-    # if selected resolution is larger than the 
+async def crop_video(videos: str) -> None:
+    # TODO: convert each video to selected resolution.
+    # if selected resolution is larger than the
     # original video, zoom in and crop.
     pass
 
 
-def main() -> None:    
+async def main() -> None:
     logger.debug('Starting main()')
 
     check_folder_exists([input_folder, output_folder, log_folder])
@@ -44,7 +44,10 @@ def main() -> None:
 
     if videos:
         logger.debug('List of videos acquired: ' + pformat(videos))
-        crop_video(videos)
+        tasks = asyncio.gather(
+            *[crop_video(video) for video in videos]
+        )
+        await tasks
     else:
         logger.debug('No videos in folder. Exiting programme')
         quit()
@@ -53,6 +56,5 @@ def main() -> None:
     pass
 
 
-
 if __name__ == '__main__':
-    main()
+    asyncio.run(main())
