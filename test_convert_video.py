@@ -22,8 +22,7 @@ def test_folder_created():
 def test_videos_listed():
     test_video = 'test_video.mov'
     test_video_path = path.join(input_folder, test_video)
-    with open(test_video_path, 'w') as video:
-        pass
+    open(test_video_path, 'x').close()
     videos = list_videos(input_folder)
     assert test_video in videos
     remove(test_video_path)
