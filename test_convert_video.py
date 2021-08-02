@@ -5,31 +5,33 @@
 
 
 from os import path, remove, removedirs
-from config import input_folder
-
 from convert_video import check_folder_exists, list_videos
 
 
-
-def test_folder_created():
+def test_folder_created() -> None:
     test_folder = 'test_folder'
     check_folder_exists([test_folder])
     new_folder = path.exists(test_folder)
-    assert new_folder == True
+    assert new_folder is True
     if new_folder:
-        removedirs(test_folder)        
+        removedirs(test_folder)
 
-def test_videos_listed():
+
+def test_videos_listed() -> None:
     test_video = ['test_video', 'test_video.mov']
     check_folder_exists([test_video[0]])  # Creates "test_video" folder
     test_video_path = path.join(test_video[0], test_video[1])
-    open(test_video_path, 'w').close()  # Creates "test_video/test_video.mov" file
+    open(test_video_path, 'w').close()  # Creates "test_video/test_video.mov"
     videos = list_videos(test_video[0])
     assert test_video[1] in videos
     remove(test_video_path)
     removedirs(test_video[0])
 
 
+def test_crop_video() -> None:
+    pass
+
+
 if __name__ == '__main__':
-    test_folder_created()
+    # test_folder_created()
     test_videos_listed()
