@@ -35,12 +35,12 @@ async def crop_video(
                         in_file,
                         audio=True,
                         ) as f:
-            if res[0]/res[1] != f.aspect_ratio:
+            if res[0]/res[1] == f.aspect_ratio:
+                needs_cropping = False
+                new_res = res
+            else:
                 needs_cropping = True
                 new_res = (res[1] * f.aspect_ratio, res[1])
-            else:
-                new_res = res
-                needs_cropping = False
 
             logger.debug(
                 'Resizing to ' + str(new_res[0]) + 'x' + str(new_res[1])
