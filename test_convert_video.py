@@ -4,34 +4,64 @@
 # Requires pytest.
 
 
-from os import path, remove, removedirs
-from convert_video import check_folder_exists, list_videos
+from os import path, listdir
+from convert_video import check_folder_exists, crop_video, list_videos
+import pytest
+import shutil
+import asyncio
 
+
+test_folder = 'test_folder'
+test_video = 'test_video.mov'
+test_video_path = path.join(test_folder, test_video)
+
+
+def _teardown(folder_to_delete):
+    shutil.rmtree(folder_to_delete)
+    pass
 
 def test_folder_created() -> None:
-    test_folder = 'test_folder'
     check_folder_exists([test_folder])
     new_folder = path.exists(test_folder)
     assert new_folder is True
-    if new_folder:
-        removedirs(test_folder)
+    _teardown(test_folder)
 
 
 def test_videos_listed() -> None:
-    test_video = ['test_video', 'test_video.mov']
-    check_folder_exists([test_video[0]])  # Creates "test_video" folder
-    test_video_path = path.join(test_video[0], test_video[1])
+    check_folder_exists([test_folder])  # Creates "test_video" folder
     open(test_video_path, 'w').close()  # Creates "test_video/test_video.mov"
-    videos = list_videos(test_video[0])
-    assert test_video[1] in videos
-    remove(test_video_path)
-    removedirs(test_video[0])
+    videos = list_videos(test_folder)
+    assert test_video in videos
+    _teardown(test_folder)
 
 
-def test_crop_video() -> None:
-    pass
+class TestCropVideo():
+    
+    test_input_video_folder = path.join('test_videos', 'input')
+    test_input_video = 'test_input_video.mp4'
+    test_output_video_folder = path.join('test_videos', 'output')
+    check_folder_exists([test_output_video_folder])
+    
+    test_resolutions = [  # (width, height)
+        (200, 200),
+        (100, 150),
+    ]
+    
+    @pytest.mark.asyncio
+    async def test_crop_video(self) -> None:
+        task = crop_video(
+            self.test_resolutions,
+            self.test_input_video_folder,
+            self.test_output_video_folder,
+            self.test_input_video
+        )
+        await task
+        assert len(listdir(self.test_output_video_folder)) == len(self.test_resolutions)
+        _teardown(self.test_output_video_folder)
 
 
 if __name__ == '__main__':
     # test_folder_created()
-    test_videos_listed()
+    # test_videos_listed()
+    run_tests = TestCropVideo()
+    asyncio.run(run_tests.test_crop_video())

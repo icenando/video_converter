@@ -9,6 +9,7 @@ from logging.handlers import RotatingFileHandler
 
 
 def check_folder_exists(folders: list) -> None:
+    assert(type(folders) == list)
     for folder in folders:
         if path.exists(folder):
             pass
