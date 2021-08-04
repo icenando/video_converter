@@ -5,5 +5,4 @@ __pycache__/config.cpython-39.pyc
 .coverage
 workspace.code-workspace
 logs/
-.coverage.Panel8.local.69785.617822
-.coverage.Panel8.local.70659.963896
+.coverage.*
