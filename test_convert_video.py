@@ -63,5 +63,4 @@ class TestCropVideo():
 if __name__ == '__main__':
     # test_folder_created()
     # test_videos_listed()
-    run_tests = TestCropVideo()
-    asyncio.run(run_tests.test_crop_video())
+    asyncio.run(TestCropVideo().test_crop_video())
