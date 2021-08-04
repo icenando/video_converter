@@ -31,10 +31,7 @@ async def crop_video(
     out_file = path.join(out_folder, video_file)
 
     for res in resolutions:
-        with VideoFileClip(
-                        in_file,
-                        audio=True,
-                        ) as f:
+        with VideoFileClip(in_file, audio=True,) as f:
             if res[0]/res[1] == f.aspect_ratio:
                 needs_cropping = False
                 new_res = res
