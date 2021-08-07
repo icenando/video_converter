@@ -1,8 +1,9 @@
 .venv
 input_videos
 output_videos
-__pycache__/config.cpython-39.pyc
+__pycache__/
 .coverage
 workspace.code-workspace
 logs/
 .coverage.*
+.vscode/launch.json

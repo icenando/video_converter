@@ -7,7 +7,7 @@ from moviepy.video.io.VideoFileClip import VideoFileClip
 import moviepy.video.fx.all as vfx
 from os import path, listdir
 from pprint import pformat
-from config import *
+from config.config import *
 import asyncio
 
 
