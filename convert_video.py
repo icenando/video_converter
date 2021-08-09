@@ -54,7 +54,7 @@ def crop_video(
     pass
 
 
-def main(file_to_process) -> None:
+def process_video(file_to_process) -> None:
     check_folder_exists([output_folder])
 
     logger.debug('Starting main()')
@@ -70,7 +70,7 @@ def main(file_to_process) -> None:
             filename,
             output_folder,
         )
-        logger.debug('Finished runnning main(). Exiting programme')
+        logger.debug('Finished runnning process_file(). Returning to app.')
 
     except KeyboardInterrupt:
         logger.debug('KeyboardInterrupt - exiting.')
@@ -80,4 +80,4 @@ def main(file_to_process) -> None:
 
 if __name__ == '__main__':
     from config.config import input_file
-    main(input_file)
+    process_video(input_file)

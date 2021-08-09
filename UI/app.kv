@@ -1,0 +1,64 @@
+<ConfirmBtn@Button>
+    background_normal: ''
+    background_color: (0, 1, .25, .5)
+    color: (1, 1, 1, .80)
+    font_size: 35
+    bold: False
+
+<CancelBtn@Button>
+    text: "CANCEL"
+    background_normal: ''
+    background_color: (1, 0, .25, .5)
+    color: (1, 1, 1, .80)
+    font_size: 35
+    bold: False
+
+<SelectionLabel@Label>
+    size_hint: (1, 0.05)
+
+<MainWindow>
+    id: main_window
+
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+
+        spacing: 20
+        padding: 50
+
+        canvas.before:
+            Color:
+                rgba: (1, 1, 1, 0.25)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            size_hint_y: 0.025
+            text: "Allowed formats: .mov, .mp4"
+
+        FileChooserListView:
+            id: input_file_chooser
+            size_hint_y: 0.75
+            path: root.cwd
+            filters: ['*.mov', '*.mp4']
+            on_selection: selected_file.text = self.selection and self.selection[0] or 'No file selected'
+
+        SelectionLabel:
+            id: selected_file
+            text: 'No file selected'
+
+        GridLayout:
+            cols: 2
+            rows: 1
+            spacing: 50
+            size_hint: (1, 0.05)
+
+            CancelBtn:
+                text: "Cancel"
+                on_release: root.close_app()
+
+            ConfirmBtn:
+                text: "Confirm"
+                disabled: True if selected_file.text == 'No file selected' else False
+                on_release: root.choose_file_folder("file", selected_file.text)
