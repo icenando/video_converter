@@ -3,7 +3,8 @@
 # convert_video.py - converts videos to selected resolution,
 # codec and format.
 
-from config.config import *
+from config.config import output_folder, logger, \
+    formats, resolutions, check_folder_exists
 
 from moviepy.video.io.VideoFileClip import VideoFileClip
 import moviepy.video.fx.all as vfx
@@ -53,25 +54,30 @@ def crop_video(
     pass
 
 
-def main() -> None:
+def main(file_to_process) -> None:
     check_folder_exists([output_folder])
 
     logger.debug('Starting main()')
 
-    logger.debug('Input videos acquired: ' + pformat(input_file))
-    
-    filename = path.split(input_file)[1]
-    
-    crop_video(
-        resolutions,
-        input_file,
-        filename,
-        output_folder,
-    )
+    logger.debug('Input videos acquired: ' + pformat(file_to_process))
 
-    logger.debug('Finished runnning main(). Exiting programme')
+    filename = path.split(file_to_process)[1]
+
+    try:
+        crop_video(
+            resolutions,
+            file_to_process,
+            filename,
+            output_folder,
+        )
+        logger.debug('Finished runnning main(). Exiting programme')
+
+    except KeyboardInterrupt:
+        logger.debug('KeyboardInterrupt - exiting.')
+
     pass
 
 
 if __name__ == '__main__':
-    main()
+    from config.config import input_file
+    main(input_file)
