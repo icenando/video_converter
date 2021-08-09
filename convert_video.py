@@ -4,7 +4,7 @@
 # codec and format.
 
 from config.config import output_folder, logger, \
-    formats, resolutions, check_folder_exists
+    formats, check_folder_exists
 
 from moviepy.video.io.VideoFileClip import VideoFileClip
 import moviepy.video.fx.all as vfx
@@ -54,7 +54,7 @@ def crop_video(
     pass
 
 
-def process_video(file_to_process) -> None:
+def process_video(file_to_process: str, resolutions: list) -> None:
     check_folder_exists([output_folder])
 
     logger.debug('Starting main()')
@@ -79,5 +79,5 @@ def process_video(file_to_process) -> None:
 
 
 if __name__ == '__main__':
-    from config.config import input_file
-    process_video(input_file)
+    from config.config import input_file, resolutions
+    process_video(input_file, resolutions)

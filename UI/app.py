@@ -11,7 +11,7 @@ from kivy.lang import Builder
 from kivy.core.window import Window
 
 from os import getcwd
-import json
+# import json
 
 
 Window.size = (900, 700)
@@ -20,7 +20,7 @@ Builder.load_file('app.kv')
 
 class MainWindow(Widget):
 
-    selected_res = []
+    selected_res = {}
     
 
     cwd = getcwd()
@@ -56,7 +56,8 @@ class MainWindow(Widget):
             logger.debug(f'input file set to: {f_name}')
 
         # self._update_vars_file(vars)
-        process_video(f_name)
+        resolutions_list = [self.selected_res[i] for i in self.selected_res]
+        process_video(f_name, resolutions_list)
         logger.debug("Returned to app.")
 
 
@@ -66,10 +67,10 @@ class MainWindow(Widget):
 
     def checkbox_click(self, _, value, res):
         if value == True:
-            self.selected_res.append(res)
+            self.selected_res[res] = tuple(map(int, res.split('x')))
             print(self.selected_res)
         else:
-            self.selected_res.remove(res)
+            self.selected_res.pop(res)
             print(self.selected_res)
     
         self.check_valid_selections()
