@@ -6,4 +6,4 @@ __pycache__/
 workspace.code-workspace
 logs/
 .coverage.*
-.vscode/launch.json
+.vscode/

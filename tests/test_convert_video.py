@@ -37,9 +37,9 @@ def test_videos_listed() -> None:
 
 class TestCropVideo():
     
-    test_input_video_folder = path.join('test_videos', 'input')
+    test_input_video_folder = path.join('tests', 'test_videos', 'input')
     test_input_video = 'test_input_video.mp4'
-    test_output_video_folder = path.join('test_videos', 'output')
+    test_output_video_folder = path.join('tests', 'test_videos', 'output')
     check_folder_exists([test_output_video_folder])
     
     test_resolutions = [  # (width, height)
