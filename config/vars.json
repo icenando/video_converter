@@ -1,0 +1,30 @@
+{
+    "input_file": "/Users/nandom/OneDrive/Coding/Python/video_converter/input_videos/v007c_engag_3840x2160_24fps_graded_v03.mov",
+    "output_folder": "output_folder/",
+    "resolutions": {
+        "1920x1080": [
+            1920,
+            1080
+        ],
+        "1080x1920": [
+            1080,
+            1920
+        ],
+        "1080x1080": [
+            1080,
+            1080
+        ],
+        "1350x1080": [
+            1350,
+            1080
+        ]
+    },
+    "codecs": {
+        "h264":
+        "h264"
+    },
+    "formats": {
+        ".mp4":
+        ".mp4"
+    }
+}

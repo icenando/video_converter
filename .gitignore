@@ -1,6 +1,6 @@
 .venv
 input_videos
-output_videos
+output_folder
 __pycache__/
 .coverage
 workspace.code-workspace

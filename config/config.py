@@ -6,6 +6,7 @@ from os import path, makedirs
 
 import logging
 from logging.handlers import RotatingFileHandler
+import json
 
 
 def check_folder_exists(folders: list) -> None:
@@ -36,21 +37,15 @@ logging.basicConfig(
 logger = logging.getLogger('main')
 
 
-input_folder = "input_videos"
-output_folder = "output_videos"
+vars_file = path.join('.','config', 'vars.json')
+with open(vars_file, 'r') as f:
+    vars = json.load(f)
 
+input_file = vars["input_file"]
+output_folder = vars["output_folder"]
 
-resolutions = [  # (width, height)
-    (1920, 1080),
-    (1080, 1920),
-    (1080, 1080),
-    (1350, 1080)
-]
+resolutions = [tuple(vars['resolutions'][res]) for res in vars['resolutions']]
 
-codecs = [
-    "h264"
-]
+formats = [vars['formats'][i] for i in vars['formats']]
 
-formats = [
-    ".mp4"
-]
+codecs = [vars['codecs'][i] for i in vars['codecs']]
