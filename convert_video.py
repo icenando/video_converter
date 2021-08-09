@@ -3,32 +3,23 @@
 # convert_video.py - converts videos to selected resolution,
 # codec and format.
 
+from config.config import *
+
 from moviepy.video.io.VideoFileClip import VideoFileClip
 import moviepy.video.fx.all as vfx
-from os import path, listdir
 from pprint import pformat
-from config.config import *
-import asyncio
+
+from os import path
 
 
-def list_videos(selected_folder: str) -> list:
-    videos_list = []
-    for f in listdir(selected_folder):
-        if path.isfile(path.join(selected_folder, f)) \
-                        and not f.startswith('.'):
-            videos_list.append(f)
-    return videos_list
+def crop_video(
+            resolutions: list,
+            in_file: str,
+            filename: str,
+            out_folder: str,
+        ) -> None:
 
-
-async def crop_video(
-                    resolutions,
-                    in_folder: str,
-                    out_folder: str,
-                    video_file: str
-                ) -> None:
-
-    in_file = path.join(in_folder, video_file)
-    out_file = path.join(out_folder, video_file)
+    out_file = path.join(out_folder, filename)
 
     for res in resolutions:
         with VideoFileClip(in_file, audio=True,) as f:
@@ -62,30 +53,25 @@ async def crop_video(
     pass
 
 
-async def main() -> None:
-    check_folder_exists([input_folder, output_folder])
+def main() -> None:
+    check_folder_exists([output_folder])
 
     logger.debug('Starting main()')
 
-    videos = list_videos(input_folder)
-
-    if videos:
-        logger.debug('List of videos acquired: ' + pformat(videos))
-        tasks = asyncio.gather(
-            *[crop_video(
-                resolutions,
-                input_folder,
-                output_folder,
-                video) for video in videos]
-        )
-        await tasks
-    else:
-        logger.debug('No videos in folder. Exiting programme')
-        quit()
+    logger.debug('Input videos acquired: ' + pformat(input_file))
+    
+    filename = path.split(input_file)[1]
+    
+    crop_video(
+        resolutions,
+        input_file,
+        filename,
+        output_folder,
+    )
 
     logger.debug('Finished runnning main(). Exiting programme')
     pass
 
 
 if __name__ == '__main__':
-    asyncio.run(main())
+    main()
