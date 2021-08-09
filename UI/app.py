@@ -20,13 +20,33 @@ Builder.load_file('app.kv')
 
 class MainWindow(Widget):
 
+    selected_res = []
+    
+
     cwd = getcwd()
+
 
     def choose_file_folder(self, chooser: str, f_name: str):
         try:
             assert(chooser == 'folder' or chooser == 'file')
         except AssertionError:
-            pass
+            logger.critical(
+                '''
+                choose_file_folder() was called 
+                without a valid 'chooser' argument.
+                '''
+            )
+            quit()
+        try:
+            assert(self.selected_res)
+        except AssertionError:
+            logger.critical(
+                '''
+                choose_file_folder() was called 
+                without a valid resolution list.
+                '''
+            )
+            quit()
 
         if chooser == "file":
             vars['input_file'] = f_name
@@ -35,19 +55,42 @@ class MainWindow(Widget):
             vars['output_folder'] = f_name
             logger.debug(f'input file set to: {f_name}')
 
-        self._update_vars_file(vars)
-
+        # self._update_vars_file(vars)
         process_video(f_name)
-
         logger.debug("Returned to app.")
+
 
     def close_app(self):
         quit()
+        
 
-    def _update_vars_file(self, updated_values):
-        logger.debug('Updating vars_file')
-        with open(vars_file, 'w', encoding='utf-8') as f:
-            json.dump(updated_values, f, ensure_ascii='False', indent=4)
+    def checkbox_click(self, _, value, res):
+        if value == True:
+            self.selected_res.append(res)
+            print(self.selected_res)
+        else:
+            self.selected_res.remove(res)
+            print(self.selected_res)
+    
+        self.check_valid_selections()
+        
+            
+    def check_valid_selections(self):
+        
+        selected_file_label = self.ids.selected_file.text
+        
+        if self.selected_res and selected_file_label != 'No file selected':
+            self.ids.confirm_btn.disabled = False
+        else:
+            self.ids.confirm_btn.disabled = True
+        
+        pass
+
+
+    # def _update_vars_file(self, updated_values):
+    #     logger.debug('Updating vars_file')
+    #     with open(vars_file, 'w', encoding='utf-8') as f:
+    #         json.dump(updated_values, f, ensure_ascii='False', indent=4)
 
 
 class MainApp(App):
