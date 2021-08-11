@@ -15,7 +15,7 @@ from os import getcwd
 
 
 Window.size = (900, 700)
-Builder.load_file('app.kv')
+Builder.load_file('UI/app.kv')
 
 
 class MainWindow(Widget):
