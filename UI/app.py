@@ -64,7 +64,7 @@ class MainWindow(Widget):
         quit()
         
 
-    def checkbox_click(self, _, value, res):
+    def checkbox_click(self, value, res):
         if value == True:
             self.selected_res[res] = tuple(map(int, res.split('x')))
         else:
