@@ -14,10 +14,13 @@
     bold: False
 
 <SelectionLabel@Label>
-    size_hint: (1, 0.05)
+    size_hint: (1, None)
+    text_size: self.size
+    halign: "center"
+    valign: "middle"
 
 <ResolutionCheckbox@CheckBox>
-    size_hint: (1, 0.05)
+    background_checkbox_normal: ''
 
 <MainWindow>
     id: main_window
@@ -36,66 +39,119 @@
                 pos: self.pos
                 size: self.size
 
-        Label:
-            size_hint_y: 0.025
-            text: "Allowed formats: .mov, .mp4"
 
-        FileChooserListView:
-            id: input_file_chooser
-            size_hint_y: 0.75
-            path: root.cwd
-            filters: ['*.mov', '*.mp4']
-            on_selection: selected_file.text = self.selection and self.selection[0] or 'No file selected'
-            on_selection: root.check_valid_selections()
+        Accordion:
+            orientation: 'horizontal'
+
+            AccordionItem:
+                id: acc_file_chooser
+                title: 'Input file'
+                collapse: False
+
+                GridLayout:
+                    cols: 1
+                    rows: 2
+
+                    Label:
+                        size_hint_y: 0.05
+                        text: "Allowed formats: .mov, .mp4"
+
+                    FileChooserListView:
+                        id: input_file_chooser
+                        size_hint_y: 0.75
+                        path: root.cwd
+                        filters: ['*.mov', '*.mp4']
+                        on_selection: selected_file.text = self.selection and self.selection[0] or 'No file selected'
+                        on_selection: root.check_valid_selections()
+
+            AccordionItem:
+                id: acc_ouput_folder
+                title: "Output folder"
+                collapse: True
+
+                GridLayout:
+                    cols: 1
+                    rows: 2
+
+                    Label:
+                        size_hint_y: 0.05
+                        text: "Choose output folder"
+
+                    FileChooserIconView:
+                        id: output_folder_chooser
+                        size_hint_y: 0.75
+                        path: root.cwd
+                        dirselect: True
+                        filters: ['']
+                        on_selection: output_folder.text = self.selection and self.selection[0] or 'No folder selected'
+                        on_selection: root.check_valid_selections()
+                
+            AccordionItem:
+                id: acc_resolutions
+                title: "Resolutions"
+                collapse: True
+
+                GridLayout:
+                    cols: 2
+                    rows: 4
+                    size_hint: (1, 1)
+                    padding: 15
+                    spacing: 20
+
+                    ResolutionCheckbox:
+                        id: checkbox_test
+                        text: "1920x1080"
+                        on_active: root.checkbox_click(self, self.active, self.text)
+
+                    Label:
+                        text: "1920x1080"
+
+                    ResolutionCheckbox:
+                        id: checkbox_test
+                        text: "1080x1920"
+                        on_active: root.checkbox_click(self, self.active, self.text)
+
+                    Label:
+                        text: "1080x1920"
+
+                    ResolutionCheckbox:
+                        id: checkbox_test
+                        text: "1080x1080"
+                        on_active: root.checkbox_click(self, self.active, self.text)
+
+                    Label:
+                        text: "1080x1080"
+
+                    ResolutionCheckbox:
+                        id: checkbox_test
+                        text: "1350x1080"
+                        on_active: root.checkbox_click(self, self.active, self.text)
+
+                    Label:
+                        text: "1350x1080"
 
         GridLayout:
             cols: 2
-            rows: 4
-            size_hint: (1, 0.15)
-            padding: 15
-            spacing: 20
-            canvas.before:
-                Color:
-                    rgba: (1, 1, 1, 0.25)
-                Rectangle:
-                    pos: self.pos
-                    size: self.size
-
-            ResolutionCheckbox:
-                id: checkbox_test
-                text: "1920x1080"
-                on_active: root.checkbox_click(self, self.active, self.text)
+            rows: 3
+            size_hint: (1, 0.25)
 
             Label:
-                text: "1920x1080"
+                text: "Input file: "
+                size_hint: (0.25, 0.25)
+                halign: "left"
 
-            ResolutionCheckbox:
-                id: checkbox_test
-                text: "1080x1920"
-                on_active: root.checkbox_click(self, self.active, self.text)
-
-            Label:
-                text: "1080x1920"
-
-            ResolutionCheckbox:
-                id: checkbox_test
-                text: "1080x1080"
-                on_active: root.checkbox_click(self, self.active, self.text)
+            SelectionLabel:
+                id: selected_file
+                text: 'No file selected'
 
             Label:
-                text: "1080x1080"
+                text: "Output folder: "
+                size_hint: (0.05, 0.25)
+                halign: "left"
 
-            ResolutionCheckbox:
-                id: checkbox_test
-                text: "1350x1080"
-                on_active: root.checkbox_click(self, self.active, self.text)
-
-            Label:
-                text: "1350x1080"
-
-        SelectionLabel:
-            id: selected_file
-            text: 'No file selected'
+            SelectionLabel:
+                id: output_folder
+                text: 'No folder selected'
 
         GridLayout:
             cols: 2

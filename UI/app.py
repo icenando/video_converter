@@ -22,7 +22,6 @@ class MainWindow(Widget):
 
     selected_res = {}
     
-
     cwd = getcwd()
 
 
@@ -68,19 +67,20 @@ class MainWindow(Widget):
     def checkbox_click(self, _, value, res):
         if value == True:
             self.selected_res[res] = tuple(map(int, res.split('x')))
-            print(self.selected_res)
         else:
             self.selected_res.pop(res)
-            print(self.selected_res)
     
         self.check_valid_selections()
         
             
     def check_valid_selections(self):
         
-        selected_file_label = self.ids.selected_file.text
+        selected_file = self.ids.selected_file.text
+        selected_folder = self.ids.output_folder.text
         
-        if self.selected_res and selected_file_label != 'No file selected':
+        if self.selected_res \
+            and selected_file != 'No file selected' \
+            and selected_folder != 'No folder selected':
             self.ids.confirm_btn.disabled = False
         else:
             self.ids.confirm_btn.disabled = True
@@ -96,7 +96,7 @@ class MainWindow(Widget):
 
 class MainApp(App):
     def build(self):
-        self.title = "Choose an input file"
+        self.title = "Video Converter"
         return MainWindow()
 
 
