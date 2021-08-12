@@ -12,7 +12,7 @@ from kivy.core.window import Window
 from kivy.properties import ObjectProperty
 
 from os import getcwd
-# import json
+import json
 
 
 Window.size = (900, 700)
@@ -29,17 +29,7 @@ class MainWindow(Widget):
     confirm_btn = ObjectProperty(None)
 
 
-    def choose_file_folder(self, chooser: str, f_name: str):
-        try:
-            assert(chooser == 'folder' or chooser == 'file')
-        except AssertionError:
-            logger.critical(
-                '''
-                choose_file_folder() was called 
-                without a valid 'chooser' argument.
-                '''
-            )
-            quit()
+    def process_file(self):
         try:
             assert(self.selected_res)
         except AssertionError:
@@ -50,18 +40,30 @@ class MainWindow(Widget):
                 '''
             )
             quit()
+        
+        try:
+            vars['input_file'] = (input_file := self.input_file_chooser.selection[0])
+            logger.debug(f'input file set to: {input_file}')
+            
+            vars['output_folder'] = (output_folder := self.output_folder_chooser.selection[0])
+            logger.debug(f'input file set to: {output_folder}')
+            
+        except IndexError:
+            logger.critical(
+                'process_file() was called without a valid input_file or output_folder.'
+            )
+            print('Critical error: view logs for details.')
+            quit()
 
-        if chooser == "file":
-            vars['input_file'] = f_name
-            logger.debug(f'input file set to: {f_name}')
-        else:
-            vars['output_folder'] = f_name
-            logger.debug(f'input file set to: {f_name}')
-
-        # self._update_vars_file(vars)
+        self._update_vars_file(vars)
         resolutions_list = [self.selected_res[i] for i in self.selected_res]
-        process_video(f_name, resolutions_list)
+        # process_video(input_file, output_folder, resolutions_list)
         logger.debug("Returned to app.")
+        
+        # Deselecting input file
+        self.update_labels('selected_file', '')
+        self.input_file_chooser.selection = ''
+        self.ids.confirm_btn.disabled = True
 
 
     def update_labels(self, label_id, label_val):
@@ -97,10 +99,10 @@ class MainWindow(Widget):
         quit()
         
 
-    # def _update_vars_file(self, updated_values):
-    #     logger.debug('Updating vars_file')
-    #     with open(vars_file, 'w', encoding='utf-8') as f:
-    #         json.dump(updated_values, f, ensure_ascii='False', indent=4)
+    def _update_vars_file(self, updated_values):
+        logger.debug('Updating vars_file')
+        with open(vars_file, 'w', encoding='utf-8') as f:
+            json.dump(updated_values, f, ensure_ascii='False', indent=4)
 
 
 class MainApp(App):
