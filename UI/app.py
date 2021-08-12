@@ -9,6 +9,7 @@ from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.lang import Builder
 from kivy.core.window import Window
+from kivy.properties import ObjectProperty
 
 from os import getcwd
 # import json
@@ -21,8 +22,11 @@ Builder.load_file('UI/app.kv')
 class MainWindow(Widget):
 
     selected_res = {}
-    
     cwd = getcwd()
+    
+    input_file_chooser = ObjectProperty(None)
+    output_folder_chooser = ObjectProperty(None)
+    confirm_btn = ObjectProperty(None)
 
 
     def choose_file_folder(self, chooser: str, f_name: str):
@@ -60,9 +64,14 @@ class MainWindow(Widget):
         logger.debug("Returned to app.")
 
 
-    def close_app(self):
-        quit()
-        
+    def update_labels(self, label_id, label_val):
+        label_to_update = getattr(self.ids, label_id)
+        if label_val:
+            label_to_update.text = label_val[0]
+            self.check_valid_selections()
+        else:
+            label_to_update.text = "No selection"
+            pass
 
     def checkbox_click(self, value, res):
         if value == True:
@@ -71,22 +80,22 @@ class MainWindow(Widget):
             self.selected_res.pop(res)
     
         self.check_valid_selections()
-        
-            
+
+
     def check_valid_selections(self):
-        
-        selected_file = self.ids.selected_file.text
-        selected_folder = self.ids.output_folder.text
-        
-        if self.selected_res \
-            and selected_file != 'No file selected' \
-            and selected_folder != 'No folder selected':
-            self.ids.confirm_btn.disabled = False
+        if self.input_file_chooser.selection \
+                and self.output_folder_chooser.selection \
+                and self.selected_res:
+            self.confirm_btn.disabled = False
         else:
             self.ids.confirm_btn.disabled = True
         
         pass
 
+
+    def close_app(self):
+        quit()
+        
 
     # def _update_vars_file(self, updated_values):
     #     logger.debug('Updating vars_file')

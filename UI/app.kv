@@ -1,15 +1,15 @@
 <ConfirmBtn@Button>
     background_normal: ''
-    background_color: (0, 1, .25, .5)
-    color: (1, 1, 1, .80)
+    background_color: (0, 1, .25, .75)
+    color: (1, 1, 1, .75)
     font_size: 35
     bold: False
 
 <CancelBtn@Button>
     text: "CANCEL"
     background_normal: ''
-    background_color: (1, 0, .25, .5)
-    color: (1, 1, 1, .80)
+    background_color: (1, 0, 0.25, .65)
+    color: (1, 1, 1, .75)
     font_size: 35
     bold: False
 
@@ -24,6 +24,10 @@
 
 <MainWindow>
     id: main_window
+
+    input_file_chooser: input_file_chooser
+    output_folder_chooser: output_folder_chooser
+    confirm_btn: confirm_btn
 
     BoxLayout:
         orientation: 'vertical'
@@ -61,8 +65,7 @@
                         size_hint_y: 0.75
                         path: root.cwd
                         filters: ['*.mov', '*.mp4']
-                        on_selection: selected_file.text = self.selection and self.selection[0] or 'No file selected'
-                        on_selection: root.check_valid_selections()
+                        on_selection: root.update_labels('selected_file', self.selection)
 
             AccordionItem:
                 id: acc_ouput_folder
@@ -83,8 +86,7 @@
                         path: root.cwd
                         dirselect: True
                         filters: ['']
-                        on_selection: output_folder.text = self.selection and self.selection[0] or 'No folder selected'
-                        on_selection: root.check_valid_selections()
+                        on_selection: root.update_labels('output_folder', self.selection)
                 
             AccordionItem:
                 id: acc_resolutions
@@ -142,7 +144,7 @@
 
             SelectionLabel:
                 id: selected_file
-                text: 'No file selected'
+                text: 'No selection'
 
             Label:
                 text: "Output folder: "
@@ -151,13 +153,13 @@
 
             SelectionLabel:
                 id: output_folder
-                text: 'No folder selected'
+                text: 'No selection'
 
         GridLayout:
             cols: 2
             rows: 1
             spacing: 50
-            size_hint: (1, 0.05)
+            size_hint: (1, 0.1)
 
             CancelBtn:
                 text: "Cancel"
