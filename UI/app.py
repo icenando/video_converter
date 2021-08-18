@@ -57,13 +57,13 @@ class MainWindow(Widget):
 
         self._update_vars_file(vars)
         resolutions_list = [self.selected_res[i] for i in self.selected_res]
-        # process_video(input_file, output_folder, resolutions_list)
+        process_video(input_file, output_folder, resolutions_list)
         logger.debug("Returned to app.")
         
         # Deselecting input file
         self.update_labels('selected_file', '')
         self.input_file_chooser.selection = ''
-        self.ids.confirm_btn.disabled = True
+        self.confirm_btn.disabled = True
 
 
     def update_labels(self, label_id, label_val):
@@ -103,7 +103,7 @@ class MainWindow(Widget):
                 and self.selected_res:
             self.confirm_btn.disabled = False
         else:
-            self.ids.confirm_btn.disabled = True
+            self.confirm_btn.disabled = True
         
         pass
 
