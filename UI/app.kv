@@ -87,7 +87,7 @@
                         dirselect: True
                         filters: ['']
                         on_selection: root.update_labels('output_folder', self.selection)
-                
+
             AccordionItem:
                 id: acc_resolutions
                 title: "Resolutions"
@@ -101,7 +101,6 @@
                     spacing: 20
 
                     ResolutionCheckbox:
-                        id: checkbox_test
                         text: "1920x1080"
                         on_active: root.checkbox_click(self.active, self.text)
 
@@ -109,7 +108,6 @@
                         text: "1920x1080"
 
                     ResolutionCheckbox:
-                        id: checkbox_test
                         text: "1080x1920"
                         on_active: root.checkbox_click(self.active, self.text)
 
@@ -117,7 +115,6 @@
                         text: "1080x1920"
 
                     ResolutionCheckbox:
-                        id: checkbox_test
                         text: "1080x1080"
                         on_active: root.checkbox_click(self.active, self.text)
 
@@ -125,7 +122,6 @@
                         text: "1080x1080"
 
                     ResolutionCheckbox:
-                        id: checkbox_test
                         text: "1350x1080"
                         on_active: root.checkbox_click(self.active, self.text)
 
@@ -134,8 +130,8 @@
 
         GridLayout:
             cols: 2
-            rows: 3
-            size_hint: (1, 0.25)
+            rows: 4
+            size_hint: (1, 0.35)
 
             Label:
                 text: "Input file: "
@@ -153,6 +149,15 @@
 
             SelectionLabel:
                 id: output_folder
+                text: 'No selection'
+
+            Label:
+                text: "Resolutions: "
+                size_hint: (0.05, 0.25)
+                halign: "left"
+
+            SelectionLabel:
+                id: resolutions_list
                 text: 'No selection'
 
         GridLayout:

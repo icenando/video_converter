@@ -70,18 +70,31 @@ class MainWindow(Widget):
         label_to_update = getattr(self.ids, label_id)
         if label_val:
             label_to_update.text = label_val[0]
-            self.check_valid_selections()
         else:
             label_to_update.text = "No selection"
-            pass
+            
+        self.check_valid_selections()
+        pass
+
 
     def checkbox_click(self, value, res):
         if value == True:
             self.selected_res[res] = tuple(map(int, res.split('x')))
+
         else:
             self.selected_res.pop(res)
-    
-        self.check_valid_selections()
+
+        resolutions = [None] * 1
+        if self.selected_res:
+            for res in self.selected_res:
+                if resolutions[0] == None:
+                    resolutions[0] = res
+                else:
+                    resolutions[0] += f', {res}'
+        else:
+            resolutions = []
+
+        self.update_labels('resolutions_list', resolutions)
 
 
     def check_valid_selections(self):
