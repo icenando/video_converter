@@ -7,7 +7,8 @@ from config.config import logger, \
     formats, check_folder_exists
 
 from moviepy.video.io.VideoFileClip import VideoFileClip
-import moviepy.video.fx.all as vfx
+from moviepy.video.fx.resize import resize
+from moviepy.video.fx.crop import crop
 from pprint import pformat
 
 from os import path
@@ -34,13 +35,13 @@ def crop_video(
             logger.debug(
                 'Resizing to ' + str(new_res[0]) + 'x' + str(new_res[1])
             )
-            f = vfx.resize(f, new_res)
+            f = resize(f, new_res)
 
             if needs_cropping:
                 logger.debug(
                     'Cropping to ' + str(res[0]) + 'x' + str(res[1])
                 )
-                f = vfx.crop(
+                f = crop(
                     f,
                     x_center=new_res[0]//2,
                     y_center=res[1]//2,

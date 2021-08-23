@@ -9,13 +9,19 @@ from logging.handlers import RotatingFileHandler
 import json
 
 
+### Needed for pyinstaller to locate vars.json ###
+# pyinstaller --add-data './config/vars.json:./config/' manager.py
+abs_path = path.split(path.dirname(__file__))[:-1]
+abs_path = path.join(*abs_path)
+###
+
 def check_folder_exists(folders: list) -> None:
     assert(type(folders) == list)
     for folder in folders:
         if path.exists(folder):
             pass
         else:
-            makedirs(folder)
+            makedirs(path.join(abs_path, folder))
     pass
 
 
@@ -27,7 +33,7 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
         RotatingFileHandler(
-            filename=path.join("logs","debug.log"),
+            filename=path.join(abs_path, "logs","debug.log"),
             mode='a',
             maxBytes=1024*1024,
             backupCount=3
@@ -37,7 +43,7 @@ logging.basicConfig(
 logger = logging.getLogger('main')
 
 
-vars_file = path.join('.','config', 'vars.json')
+vars_file = path.join(abs_path, 'config','vars.json')
 with open(vars_file, 'r') as f:
     vars = json.load(f)
 
