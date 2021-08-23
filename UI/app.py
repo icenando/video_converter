@@ -2,7 +2,7 @@
 
 # app.py - main app window for ../convert_video.py
 
-from config.config import logger, vars_file, vars
+from config.config import logger, vars_file, vars, abs_path
 from convert_video import process_video
 
 from kivy.app import App
@@ -11,7 +11,7 @@ from kivy.lang import Builder
 from kivy.core.window import Window
 from kivy.properties import ObjectProperty
 
-from os import getcwd
+from os import path, sep
 from sys import exit
 import json
 
@@ -23,7 +23,8 @@ Builder.load_file('UI/app.kv')
 class MainWindow(Widget):
 
     selected_res = {}
-    cwd = getcwd()
+    start_path = path.join(sep, *abs_path.split(sep)[:-2])
+    cwd = start_path
     
     input_file_chooser = ObjectProperty(None)
     output_folder_chooser = ObjectProperty(None)
