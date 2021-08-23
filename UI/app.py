@@ -12,6 +12,7 @@ from kivy.core.window import Window
 from kivy.properties import ObjectProperty
 
 from os import getcwd
+from sys import exit
 import json
 
 
@@ -109,7 +110,7 @@ class MainWindow(Widget):
 
 
     def close_app(self):
-        quit()
+        exit()
         
 
     def _update_vars_file(self, updated_values):
