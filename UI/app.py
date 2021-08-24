@@ -48,7 +48,7 @@ class MainWindow(Widget):
             logger.debug(f'input file set to: {input_file}')
             
             vars['output_folder'] = (output_folder := self.output_folder_chooser.selection[0])
-            logger.debug(f'input file set to: {output_folder}')
+            logger.debug(f'output folder set to: {output_folder}')
             
         except IndexError:
             logger.critical(
