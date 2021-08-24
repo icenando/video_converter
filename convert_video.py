@@ -62,7 +62,7 @@ def process_video(
         ) -> None:
     check_folder_exists([output_folder])
 
-    logger.debug('Starting main()')
+    logger.debug('Starting process_video()')
 
     logger.debug('Input videos acquired: ' + pformat(file_to_process))
 
@@ -85,4 +85,4 @@ def process_video(
 
 if __name__ == '__main__':
     from config.config import input_file, output_folder, resolutions
-    process_video(input_file, resolutions)
+    process_video(input_file, output_folder, resolutions)
