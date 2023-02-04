@@ -19,10 +19,11 @@ These can be changed in `vars.json` to any formats supported by `fmpeg`: https:/
 A video editor wanted to automate their repetitive job resizing and cropping videos for different social media platforms.
 
 ## REQUIREMENTS
-`python 3.8`
-`homebrew`: https://brew.sh
-`ffmpeg` (must be installed system wide):
+1) python 3.8.2
 
+2) homebrew: https://brew.sh
+
+3) ffmpeg (must be installed system wide):
 ```shell
 brew install ffmpeg
 ```
